@@ -1,0 +1,108 @@
+Projeto 01 – Cap 01 / Aula 01 – Fundamentos do Reactjs
+
+A biblioteca JS mais utilizada e recomendada para aplicações que demandam interações com o usuário.
+
+Os 2 principais padrões de renderização atualmente são os tipos de aplicação SSR (Server Side Rendering – Renderização do lado do servidor) e SPA (Single Page Application – Aplicativo de página única).
+
+O SSR é o padrão tradicional, ou seja, toda vez que o usuário, através do browser, requisita uma página para o servidor, este, que possui tanto o backend como o frontend da aplicação, faz o carregamento dessa página em HTML/CSS/JS e devolve toda a página novamente para o browser. Então todo site que fica uma tela em branco enquanto a nova página não carrega, foi escrito no padrão SSR.
+
+Com o SPA, no momento em que o usuário acessa uma rota, o backend não é mais o responsável pela criação visual da página, ele contém as informações cruas necessárias que o usuário pediu na requisição e envia esses dados para o frontend (React), uma outra aplicação, através de uma estrutura de dados chamada json (Javascript Object Notation) que é de fácil leitura, pelo computador e pelo humano, pois, utiliza “chave” e “valor” somente e que é interpretável por praticamente todas as tecnologias e linguagens. 
+
+Temos então outra estrutura divida em 2, o backend sendo responsável por tudo que não é visual e enviando para a outra aplicação (React, Vue, Angular) que, munida desses dados, fica responsável, somente pela construção da reposta visual para o usuário.
+
+
+
+Projeto 01 – Cap 01 / Aula 02 – Bundlers e Compilers
+
+A evolução dos browsers é sempre mais lenta do que a evolução das linguagens e nem sempre os códigos são suportáveis por eles. É aí que entram em cena os bundlers e compilers.
+
+Os compilers, são compiladores de código, ou seja, ferramentas que convertem os códigos de um formato pra outro. Ajudando a rodar códigos escritos em React, uma linguagem moderna, em browsers antigos que nativamente não suportariam o código cru em React, no ecossistema do Javascript, o compilador mais famoso é o Babel.
+O Babel, basicamente, traduz códigos modernos para códigos mais antigos através da sintaxe.
+
+Nenhuma aplicação é escrita em um único arquivo de código (cada parte da aplicação é separada e escrita de modo organizado e “conversando” entre si através de importação e exportação de dados e informações, mas os browsers também não “entendem” um código assim (pelo menos os mais antigos), então precisávamos de ferramentas capazes de fazer essa junção de todos os arquivos, em somente um, pois, os browsers eram capazes, somente, de carregar um único arquivo script.js e o responsável por essa funcionalidade é o bundler (empacotador). O bundler mais famoso é o Webpack.
+O webpack, basicamente, converte um grande número de arquivos interligados entre si em um único arquivo executável.
+Mas atualmente, os browsers vem acelerando sua evolução e temos outras alternativas em relação ao Babel e Webpack. O Vite e o Snowpack.
+
+Vite – Uma grande vantagem do Vite em relação ao Webpack é que ele utiliza, por padrão, os ECMAScript Modules nativos do browser, ou seja, não é necessário bundling. Além disso, o Vite já faz o processo de compiling de forma automática, não precisando do Babel, pois, possui um compilador interno do próprio Vite.
+
+
+
+Projeto 01 – Cap 01 / Aula 03 – Criando um projeto React
+
+A criação do projeto será pelo Vite através do comando:
+
+npm create vite@latest
+
+Depois desse comando, precisamos instalar as dependências para poder rodar o projeto:
+
+npm init -y
+npm install
+
+O Vite já traz muitas coisas pré-configuradas para o projeto. Uma deles é o self-refresh (auto-carregamento) a cada atualização do projeto de forma automática.
+Na tag script, localizada no arquivo index.html, vemos que é o type=”module”, pois, o Vite utiliza os ECMAScript Modules nativos do browser (formatos de importação e exportação entre arquivos) e no src=”/src/main.jsx” indica que este será o primeiro arquivo carregado ao iniciar a aplicação.
+
+No main.jsx, importamos o React e o ReactDom. Sendo o React o coração da aplicação, independente da forma que será a aplicação (WEB, mobile, na TV, VR e etc), o ReactDOM é a integração do React com a DOM (Document Object Model) que é a representação do HTML através do Javascript.
+Então quando importamos o ReactDom, estamos integrando o React pra funcionar no ambiente Web (no browser)
+
+A partir daí temos acesso a métodos do ReactDOM, como o ReactDOM.createroot que recebe o elemento raiz da página HTML. A partir daí o React irá criar toda a aplicação em html, css e Javascript dentro dessa div.
+
+Além do createroot, temos o método render que é responsável por renderizar (mostrar em tela) o componente que estiver escrito ali, no caso o <App />
+
+Assim, toda a aplicação fica a cargo do Javascript e conseguimos ter mais poder para manipular todo o código.
+
+
+
+Projeto 01 – Cap 01 / Aula 04 – Componentes
+
+A componentização no React é uma das grandes vantagens, pois, podemos “quebrar” o código em componentes que trazem a possibilidade de repetição, com informações diferentes (escalabilidade) e manutenções mais fáceis e rápidas.
+Um componente, nada mais é do que uma função que retorna HTML (ou JSX – Javascript + XML)
+
+
+
+
+
+
+
+
+Lembrando que precisamos exportar o componente para que seja possível utilizá-lo em outra parte do código.
+
+
+
+
+
+
+
+Formas de exportar um componente:
+- export default (nome do componente) – que traz a possibilidade de mudar o nome do componente no momento da importação
+- named exports = export function… - que precisamos importar com as chaves: { nome do componente } e nos força a importar com o mesmo nome do componente que foi exportado, evitando maiores confusões.
+
+
+
+Projeto 01 – Cap 01 / Aula 05 – Propriedades
+
+Propriedades são informações que podemos passar para os componentes. Nada mais são do que a mesma coisa que atributos em tags html. No nosso exemplo, o componente <Post /> receberá um author e um conteúdo:
+
+Como passamos propriedades para o componente, podemos acessar essas propriedades (props) como parâmetros da função Post
+
+
+
+
+
+Que contém as propriedades passadas: props: { author: “”, content: “” }
+
+Agora, pra mostrar essas informações, podemos chamar as props na montagem (return) do componente:
+
+
+
+
+
+
+
+
+
+
+
+
+Assim, temos um componente construído apenas uma vez, mas repetível mudando as informações e detalhes de cada post, mas mantendo uma estrutura padrão
+
+
